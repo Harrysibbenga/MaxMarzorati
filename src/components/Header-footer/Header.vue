@@ -15,7 +15,7 @@
       <b-collapse id="navbar-toggle-collapse" is-nav class="d-md-flex justify-content-md-between">
         <transition name="slide-left">
           <b-navbar-nav class="d-md-flex justify-content-md-around text-center" v-if="slideLeft">
-            <b-nav-item to="/about" class="about">About</b-nav-item>
+            <b-nav-item to="about" class="about">About</b-nav-item>
 
             <b-nav-item to="/news" class="news">News</b-nav-item>
 
@@ -58,7 +58,10 @@
 
             <p class="text-secondary">
               <span class="text-white">Email:</span>
-              enquiries@jhrdevelopments.com
+              <a
+                class="text-secondary"
+                href="mailto:enquiries@jhrdevelopments.com"
+              >enquiries@jhrdevelopments.com</a>
             </p>
             <div class="container-fluid text-center">
               <div class="row mx-auto py-4">
@@ -106,7 +109,7 @@ export default {
     return {
       slideDown: false,
       slideLeft: false,
-      slideRight: false
+      slideRight: false,
     };
   },
   name: "Header",
@@ -115,7 +118,7 @@ export default {
     this.slideDown = true;
     this.slideLeft = true;
     this.slideRight = true;
-  }
+  },
 };
 </script>
 

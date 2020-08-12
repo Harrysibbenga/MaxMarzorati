@@ -1,5 +1,5 @@
 <template>
-  <div id="calendar">
+  <div id="calendar" class="mb-3">
     <div class="container bg-dark pb-5">
       <div class="row py-5">
         <div class="col-12 d-flex justify-content-around">
@@ -64,14 +64,14 @@ import moment from "moment";
 export default {
   name: "Calendar",
   props: {
-    msg: String
+    msg: String,
   },
   data() {
     return {
       view: "f3",
       f3: true,
       f4: false,
-      ongoing: false
+      ongoing: false,
     };
   },
   computed: {
@@ -84,7 +84,7 @@ export default {
     f3Check() {
       let now = new Date(new Date().toDateString());
       let ongoing = [];
-      this.f3Fixtures.forEach(fixture => {
+      this.f3Fixtures.forEach((fixture) => {
         if (moment(fixture.date).toDate() >= now) {
           fixture.ongoing = true;
           ongoing.push(fixture);
@@ -98,7 +98,7 @@ export default {
     f4Check() {
       let now = new Date(new Date().toDateString());
       let ongoing = [];
-      this.f4Fixtures.forEach(fixture => {
+      this.f4Fixtures.forEach((fixture) => {
         if (moment(fixture.date).toDate() >= now) {
           fixture.ongoing = true;
           ongoing.push(fixture);
@@ -108,7 +108,7 @@ export default {
         }
       });
       return ongoing;
-    }
+    },
   },
   methods: {
     changeView(view) {
@@ -122,7 +122,7 @@ export default {
       this.view = "";
       this.view = view;
     },
-    checkDate() {}
+    checkDate() {},
   },
   filters: {
     formatDate(val) {
@@ -131,8 +131,8 @@ export default {
       }
       let date = val;
       return moment(date).format("Do MMM YYYY");
-    }
-  }
+    },
+  },
 };
 </script>
 

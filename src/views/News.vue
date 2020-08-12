@@ -1,7 +1,6 @@
 <template>
   <div>
     <Header></Header>
-
     <div id="news">
       <div class="container-fluid">
         <div class="row">
@@ -64,25 +63,25 @@ export default {
       transition: false,
       post: {
         img: "",
-        alt: ""
-      }
+        alt: "",
+      },
     };
   },
   props: {
     size: {
       type: Number,
       required: false,
-      default: 6
-    }
+      default: 6,
+    },
   },
   computed: {
     posts: {
-      get: function() {
+      get: function () {
         return this.postsVw;
       },
-      set: function(newValue) {
+      set: function (newValue) {
         return newValue;
-      }
+      },
     },
     pageCount() {
       let l = this.posts.length,
@@ -93,11 +92,11 @@ export default {
       const start = this.pageNumber * this.size,
         end = start + this.size;
       return this.posts.slice(start, end);
-    }
+    },
   },
   components: {
     mdbIcon,
-    mdbBtn
+    mdbBtn,
   },
   methods: {
     filter(value) {
@@ -125,7 +124,7 @@ export default {
       imageCollection
         .doc(id)
         .get()
-        .then(doc => {
+        .then((doc) => {
           this.post.img = doc.data().url;
           this.post.alt = doc.data().alt;
         });
@@ -135,7 +134,7 @@ export default {
     },
     prevPage() {
       this.pageNumber--;
-    }
+    },
   },
   created() {
     this.isActive = "all";
@@ -153,8 +152,8 @@ export default {
       }
       let date = val;
       return moment(date).format("Do MMM YYYY");
-    }
-  }
+    },
+  },
 };
 </script>
 

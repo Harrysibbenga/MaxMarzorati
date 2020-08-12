@@ -9,18 +9,17 @@
 
 <script>
 // @ is an alias to /src
-import Carousel from "@/components/Carousel.vue";
-import Latest from "@/components/Latest.vue";
-import Calendar from "@/components/Calendar.vue";
+import Carousel from "@/components/PageComponents/Carousel.vue";
+import Latest from "@/components/PageComponents/Latest.vue";
+import Calendar from "@/components/PageComponents/Calendar.vue";
 
 export default {
   name: "Home",
   components: {
     Carousel,
     Latest,
-    Calendar
-  }
+    Calendar,
+  },
 };
 </script>
 
-<style scoped></style>

@@ -38,7 +38,7 @@ export default {
     },
   },
   watch: {
-    getLoading: function(val) {
+    getLoading: function (val) {
       if (val) {
         console.log("start fired");
         this.start();
@@ -54,8 +54,3 @@ export default {
 };
 </script>
 
-<style lang="css">
-.loading {
-  z-index: 3000;
-}
-</style>

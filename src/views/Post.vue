@@ -34,7 +34,7 @@ export default {
   computed: {
     post() {
       return this.$store.getters["posts/getPost"];
-    }
+    },
   },
   created() {
     this.$store.dispatch("posts/setPosts");
@@ -51,8 +51,8 @@ export default {
       }
       let date = val;
       return moment(date).format("Do MMM YYYY");
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -4,7 +4,7 @@
       <div class="d-flex justify-content-around">
         <div class="align-self-center">
           <span>
-            <img src="../assets/satellite-dish-solid.png" width="20px" height="20px" />
+            <img :src="require('@/assets/satellite-dish-solid.png')" width="20px" height="20px" />
           </span>
         </div>
         <div class="align-self-center text-center">
@@ -23,7 +23,7 @@
       <div class="d-flex justify-content-around">
         <div class="align-self-center">
           <span>
-            <img src="../assets/satellite-dish-solid.png" width="20px" height="20px" />
+            <img :src="require('@/assets/satellite-dish-solid.png')" width="20px" height="20px" />
           </span>
         </div>
         <div class="align-self-center text-center">
@@ -41,16 +41,16 @@ export default {
   props: {
     deadline: {
       type: String,
-      required: true
+      required: true,
     },
     race: {
       type: String,
-      required: true
+      required: true,
     },
     speed: {
       type: Number,
-      default: 1000
-    }
+      default: 1000,
+    },
   },
   data() {
     return {
@@ -70,8 +70,8 @@ export default {
         "Sep",
         "Oct",
         "Nov",
-        "Dec"
-      ]
+        "Dec",
+      ],
     };
   },
   mounted() {
@@ -91,7 +91,7 @@ export default {
     },
     days() {
       return Math.floor(this.currentTime / (1000 * 60 * 60 * 24));
-    }
+    },
   },
   filters: {
     formatTime(value) {
@@ -106,7 +106,7 @@ export default {
       }
       let date = val;
       return moment(date).format("Do MMM YYYY");
-    }
+    },
   },
   methods: {
     countdown() {
@@ -116,13 +116,18 @@ export default {
       } else {
         this.currentTime = null;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style lang="css">
 .timer {
-  width: 320px;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .timer {
+    width: 350px;
+  }
 }
 </style>

@@ -31,7 +31,11 @@ const db = firebase.firestore(),
     formula3Collection = db.collection("formula3"),
     formula4Collection = db.collection("formula4"),
     driversCollection = db.collection('drivers'),
-    carouselCollection = db.collection('carousel')
+    carouselCollection = db.collection('carousel'),
+    aboutPage = db.collection('aboutPage'),
+    simPage = db.collection('simPage'),
+    f3Page = db.collection('f3Page'),
+    f4Page = db.collection('f4Page')
 
 
 // firebase collections
@@ -46,5 +50,9 @@ export {
     formula3Collection,
     formula4Collection,
     driversCollection,
-    carouselCollection
+    carouselCollection,
+    aboutPage,
+    simPage,
+    f3Page,
+    f4Page
 };

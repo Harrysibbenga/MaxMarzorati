@@ -2,11 +2,11 @@
   <div id="carousel-section" class="position-relative">
     <mdb-carousel :items="items" :interval="4000" controlls class="d-none d-md-block"></mdb-carousel>
     <div class="timer-cont">
-      <div class="d-flex">
-        <div class="timer">
+      <div class="d-flex flex-column flex-md-row flex-center">
+        <div class="timer mt-1">
           <timer :deadline="upcomingF3Event" :race="'F3'"></timer>
         </div>
-        <div class="timer">
+        <div class="timer mt-1">
           <timer :deadline="upcomingF4Event" :race="'F4'"></timer>
         </div>
       </div>
@@ -16,7 +16,7 @@
 
 <script>
 import { mdbCarousel } from "mdbvue";
-import Timer from "./Timer";
+import Timer from "../UI/Timer";
 import moment from "moment";
 
 export default {
@@ -95,7 +95,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 @media (min-width: 768px) {
   .timer-cont {
     position: absolute;

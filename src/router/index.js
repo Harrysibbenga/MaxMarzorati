@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+// Views 
 import Home from "../views/Home.vue";
 import About from "../views/About.vue";
 import News from "../views/News.vue";
@@ -9,8 +10,9 @@ import F3 from "../views/F3.vue";
 import F4 from "../views/F4.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Simulator from "../views/Simulator.vue"
-import Driver from "../views//Drivers";
-import DriverProfile from "../views//Driver";
+import Driver from "../views/Drivers";
+import DriverProfile from "../views/Driver";
+// Dashboard 
 import Welcome from "@/components/Dashboard/Welcome";
 import Calendars from "@/components/Dashboard/Calendars";
 import Posts from "@/components/Dashboard/Posts";
@@ -21,6 +23,12 @@ import Carousel from "@/components/Dashboard/Carousel";
 import Gallery from "@/components/Dashboard/Gallery";
 import Images from "@/components/Dashboard/Images";
 import Circuits from "@/components/Dashboard/Circuits";
+import Pages from "@/components/Dashboard/Pages"
+// Page edits 
+import AboutEdit from "@/components/Pages/About"
+import SimulatorEdit from "@/components/Pages/Simulator"
+import F3Edit from "@/components/Pages/F3"
+import F4Edit from "@/components/Pages/F4"
 
 import {
   auth
@@ -123,6 +131,27 @@ const router = new VueRouter({
               component: Circuits,
             },
           ],
+        },
+        {
+          path: 'pages',
+          component: Pages,
+          children: [{
+              path: "/",
+              component: AboutEdit,
+            },
+            {
+              path: "simulator",
+              component: SimulatorEdit,
+            },
+            {
+              path: "f3",
+              component: F3Edit,
+            },
+            {
+              path: "f4",
+              component: F4Edit,
+            }
+          ]
         }
       ],
       meta: {

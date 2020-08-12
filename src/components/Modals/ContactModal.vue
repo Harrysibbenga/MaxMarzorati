@@ -24,7 +24,7 @@
             <mdb-card-body>
               <mdb-card-text class="pb-4 text-center" mr-4 ml-4>
                 Do you have any questions? Please do not hesitate to contact us
-                directly. Our team will cgetback to you within a matter of hours
+                directly. Our team will get back to you within a matter of hours
                 to help you.
               </mdb-card-text>
               <mdb-row>

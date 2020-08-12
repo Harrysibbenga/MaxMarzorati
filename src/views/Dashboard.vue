@@ -13,6 +13,7 @@
         <b-nav-item to="/dashboard/carousel/">Carousel</b-nav-item>
         <b-nav-item to="/dashboard/drivers/">Drivers</b-nav-item>
         <b-nav-item to="/dashboard/gallery/">Gallery</b-nav-item>
+        <b-nav-item to="/dashboard/pages/">Pages</b-nav-item>
         <b-nav-item @click="logout">Logout</b-nav-item>
       </b-nav>
     </div>

@@ -7,9 +7,11 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store/store";
 import vuelidate from "vuelidate";
-import Loader from "@/components/Loader";
-import Contact from "@/components/Contact";
+import Loader from "@/components/UI/Loader";
+import ContactModal from "@/components/Modals/ContactModal";
 import Header from "@/components/Header-footer/Header";
+import Contact from "@/components/PageComponents/Contact";
+import MailingList from "@/components/PageComponents/MailingList";
 
 // WYSIWYG
 import CKEditor from "@ckeditor/ckeditor5-vue";
@@ -33,9 +35,11 @@ import {
 
 Vue.use(vuelidate);
 Vue.component("loader", Loader);
-Vue.component("contact", Contact);
+Vue.component("contact-modal", ContactModal);
 Vue.component("Header", Header);
-Vue.config.productionTip = false;
+Vue.component("contact", Contact)
+Vue.component("mailing-list", MailingList)
+Vue.config.productionTip = false
 
 let app;
 auth.onAuthStateChanged(() => {
@@ -46,6 +50,7 @@ auth.onAuthStateChanged(() => {
       store,
       render: (h) => h(App),
     })
+    store.dispatch('global/setModal', true)
     router.beforeEach((to, from, next) => {
       store.dispatch("global/setLoading", true);
 
