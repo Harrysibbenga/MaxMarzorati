@@ -7,30 +7,29 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <title>Max Mazorati</title>
+  <script src="https://apps.elfsight.com/p/platform.js" defer></script>
+  <title>Max Marzorati</title>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175244145-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-175244145-1');
+  </script>
 </head>
 
 <body>
   <noscript>
-    <strong>We're sorry but Max Mazorati doesn't work
+    <strong>We're sorry but Max Marzorati doesn't work
       properly without JavaScript enabled. Please enable it to
       continue.</strong>
   </noscript>
   <div id="app"></div>
-  <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
-  <script type="text/javascript">
-    (function ($) {
-      window.fnames = new Array();
-      window.ftypes = new Array();
-      fnames[0] = "EMAIL";
-      ftypes[0] = "email";
-      fnames[1] = "FNAME";
-      ftypes[1] = "text";
-      fnames[2] = "LNAME";
-      ftypes[2] = "text";
-    })(jQuery);
-    var $mcj = jQuery.noConflict(true);
-  </script>
 </body>
 
 </html>

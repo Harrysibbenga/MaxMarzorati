@@ -3,20 +3,32 @@
     <mdb-container>
       <mdb-row>
         <mdb-col class="text-center pt-2">
-          <img v-if="post.url" :src="post.url" :alt="img.alt" class="img-fluid" />
+          <img
+            v-if="post.url"
+            :src="post.url"
+            :alt="img.alt"
+            class="img-fluid"
+          />
 
-          <img v-else :src="defaultImage" alt="Placeholder image" class="img-fluid" />
+          <img
+            v-else
+            :src="defaultImage"
+            alt="Placeholder image"
+            class="img-fluid"
+          />
         </mdb-col>
 
         <mdb-col>
           <form @submit.prevent="submitForm" class="pt-2">
             <div class="row">
               <div class="md-form col-4 p-0">
-                <mdb-btn color="primary" class="ml-3" inline @click="newImage">Headline Image</mdb-btn>
+                <mdb-btn color="primary" class="ml-3" inline @click="newImage"
+                  >Headline Image</mdb-btn
+                >
               </div>
 
               <div class="md-form col-md-6 col-lg-4">
-                <mdb-input type="date" inline v-model.trim="post.date" />
+                <mdb-input type="date" v-model.trim="post.date" />
               </div>
             </div>
 
@@ -75,7 +87,11 @@
           </table>
         </mdb-col>
         <mdb-col class="col-12 text-center">
-          <mdb-btn :class="{ 'd-none': pageNumber == 0 }" @click="prevPage" color="primary">
+          <mdb-btn
+            :class="{ 'd-none': pageNumber == 0 }"
+            @click="prevPage"
+            color="primary"
+          >
             <mdb-icon icon="angle-double-left" />
           </mdb-btn>
           <mdb-btn
@@ -90,13 +106,24 @@
     </mdb-container>
 
     <!-- editModel  -->
-    <mdb-modal top position="top" fullHeight direction="top" :show="editModal" @close="cancelEdit">
+    <mdb-modal
+      top
+      position="top"
+      fullHeight
+      direction="top"
+      :show="editModal"
+      @close="cancelEdit"
+    >
       <mdb-modal-header>
         <mdb-modal-title>{{ clickedPost.title }}</mdb-modal-title>
       </mdb-modal-header>
       <mdb-modal-body>
         <form @submit.prevent class="p-2">
-          <img v-if="clickedPost.url" :src="clickedPost.url" class="img-fluid" />
+          <img
+            v-if="clickedPost.url"
+            :src="clickedPost.url"
+            class="img-fluid"
+          />
 
           <mdb-btn @click="changeImage" color="primary">Change image</mdb-btn>
 
@@ -109,7 +136,11 @@
           </div>
 
           <div class="md-form">
-            <mdb-input label="Excerpt" inline v-model.trim="clickedPost.excerpt" />
+            <mdb-input
+              label="Excerpt"
+              inline
+              v-model.trim="clickedPost.excerpt"
+            />
           </div>
 
           <div class="md-form">
@@ -143,7 +174,9 @@
       @close="deleteModal = false"
     >
       <mdb-modal-body class="text-center">
-        <span class="text-danger">Are you sure you want to delete this post</span>
+        <span class="text-danger"
+          >Are you sure you want to delete this post</span
+        >
         {{ toDeletePost.title }}
         <mdb-btn color="secondary" @click.native="cancelDelete">Close</mdb-btn>
         <mdb-btn color="danger" @click="confirmDelete">Delete</mdb-btn>
@@ -162,7 +195,9 @@
         <img :src="img.content.url" :alt="img.content.alt" class="img-fluid" />
       </mdb-modal-body>
       <mdb-modal-footer>
-        <mdb-btn color="secondary" size="sm" @click.native="declineUse">No</mdb-btn>
+        <mdb-btn color="secondary" size="sm" @click.native="declineUse"
+          >No</mdb-btn
+        >
         <mdb-btn color="primary" size="sm" @click="confirmUse">Yes</mdb-btn>
       </mdb-modal-footer>
     </mdb-modal>
@@ -198,16 +233,27 @@
                   class="custom-file-label"
                   for="inputGroupFile01"
                   v-if="file.name"
-                >{{ file.name }}</label>
-                <label class="custom-file-label" for="inputGroupFile01" v-else>Image</label>
+                  >{{ file.name }}</label
+                >
+                <label class="custom-file-label" for="inputGroupFile01" v-else
+                  >Image</label
+                >
               </div>
             </div>
           </div>
         </div>
       </mdb-modal-body>
       <mdb-modal-footer>
-        <mdb-btn color="secondary" size="sm" @click.native="closeImageUpload">Close</mdb-btn>
-        <mdb-btn color="primary" size="sm" :disabled="img.alt == ''" @click="saveFile(type)">Save</mdb-btn>
+        <mdb-btn color="secondary" size="sm" @click.native="closeImageUpload"
+          >Close</mdb-btn
+        >
+        <mdb-btn
+          color="primary"
+          size="sm"
+          :disabled="img.alt == ''"
+          @click="saveFile(type)"
+          >Save</mdb-btn
+        >
       </mdb-modal-footer>
       <transition name="fade">
         <div
@@ -642,5 +688,3 @@ export default {
   },
 };
 </script>
-
-<style lang="css"></style>

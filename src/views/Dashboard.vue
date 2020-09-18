@@ -8,10 +8,10 @@
         <hr />
       </div>
       <b-nav tabs>
+        <b-nav-item to="/dashboard/video/">Video Section</b-nav-item>
         <b-nav-item to="/dashboard/posts/">Posts</b-nav-item>
-        <b-nav-item to="/dashboard/calendars/">Calendars</b-nav-item>
-        <b-nav-item to="/dashboard/carousel/">Carousel</b-nav-item>
-        <b-nav-item to="/dashboard/drivers/">Drivers</b-nav-item>
+        <b-nav-item to="/dashboard/calendar/">Calendar</b-nav-item>
+        <b-nav-item to="/dashboard/profile/">Profile</b-nav-item>
         <b-nav-item to="/dashboard/gallery/">Gallery</b-nav-item>
         <b-nav-item to="/dashboard/pages/">Pages</b-nav-item>
         <b-nav-item @click="logout">Logout</b-nav-item>
@@ -39,7 +39,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .nav-link {
   color: black;
 }

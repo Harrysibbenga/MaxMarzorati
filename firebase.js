@@ -28,14 +28,14 @@ const db = firebase.firestore(),
     postsCollection = db.collection("posts"),
     imageCollection = db.collection('images'),
     circuitsCollection = db.collection('circuits'),
-    formula3Collection = db.collection("formula3"),
-    formula4Collection = db.collection("formula4"),
-    driversCollection = db.collection('drivers'),
-    carouselCollection = db.collection('carousel'),
-    aboutPage = db.collection('aboutPage'),
-    simPage = db.collection('simPage'),
-    f3Page = db.collection('f3Page'),
-    f4Page = db.collection('f4Page')
+    calendarCollection = db.collection("calendar"),
+    profileCollection = db.collection('profile'),
+    videoCollection = db.collection('video'),
+    fanclubPage = db.collection('fanclubPage'),
+    marketingPage = db.collection('marketingPage'),
+    partnersPage = db.collection('partnersPage'),
+    videoSection = db.collection('videoSection'),
+    mediaCollection = db.collection('media');
 
 
 // firebase collections
@@ -47,12 +47,12 @@ export {
     postsCollection,
     imageCollection,
     circuitsCollection,
-    formula3Collection,
-    formula4Collection,
-    driversCollection,
-    carouselCollection,
-    aboutPage,
-    simPage,
-    f3Page,
-    f4Page
+    calendarCollection,
+    profileCollection,
+    videoCollection,
+    fanclubPage,
+    marketingPage,
+    videoSection,
+    mediaCollection,
+    partnersPage
 };

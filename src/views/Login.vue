@@ -179,7 +179,7 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style scoped>
 a {
   color: black;
 }

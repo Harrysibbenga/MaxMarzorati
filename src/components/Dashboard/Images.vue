@@ -41,8 +41,8 @@
           class="text-danger"
         >Are you sure you want to delete this image ? ( any documents that use this image will need to be changed )</span>
         {{ toDeleteItem.name }}
-        <mdb-btn color="secondary" @click.native="cancelDelete">Close</mdb-btn>
-        <mdb-btn color="danger" @click="confirmDelete">Delete</mdb-btn>
+        <mdb-btn color="primary" @click.native="cancelDelete">Close</mdb-btn>
+        <mdb-btn color="secondary" @click="confirmDelete">Delete</mdb-btn>
       </mdb-modal-body>
     </mdb-modal>
 

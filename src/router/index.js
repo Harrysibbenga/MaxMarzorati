@@ -2,33 +2,32 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 // Views 
 import Home from "../views/Home.vue";
-import About from "../views/About.vue";
+import Fanclub from "../views/Fanclub.vue";
+import Partners from "../views/Partners.vue";
 import News from "../views/News.vue";
 import Post from "../views/Post.vue";
 import Login from "../views/Login.vue";
-import F3 from "../views/F3.vue";
-import F4 from "../views/F4.vue";
 import Dashboard from "../views/Dashboard.vue";
-import Simulator from "../views/Simulator.vue"
-import Driver from "../views/Drivers";
-import DriverProfile from "../views/Driver";
+import Marketing from "../views/Marketing.vue"
+import DriverProfile from "../views/Profile";
+import Media from "../views/Media"
 // Dashboard 
 import Welcome from "@/components/Dashboard/Welcome";
-import Calendars from "@/components/Dashboard/Calendars";
+import Calendar from "@/components/Dashboard/Calendar";
 import Posts from "@/components/Dashboard/Posts";
-import Drivers from "@/components/Dashboard/Drivers";
-import Formula_3 from "@/components/Dashboard/Formula3";
-import Formula_4 from "@/components/Dashboard/Formula4";
-import Carousel from "@/components/Dashboard/Carousel";
+import Profile from "@/components/Dashboard/Profile";
+import Video from "@/components/Dashboard/Video";
 import Gallery from "@/components/Dashboard/Gallery";
 import Images from "@/components/Dashboard/Images";
 import Circuits from "@/components/Dashboard/Circuits";
+import Videos from "@/components/Dashboard/Videos";
 import Pages from "@/components/Dashboard/Pages"
 // Page edits 
-import AboutEdit from "@/components/Pages/About"
-import SimulatorEdit from "@/components/Pages/Simulator"
-import F3Edit from "@/components/Pages/F3"
-import F4Edit from "@/components/Pages/F4"
+import FanclubEdit from "@/components/Pages/Fanclub"
+import MarketingEdit from "@/components/Pages/Marketing"
+import MediaEdit from "@/components/Pages/Media"
+import PartnersEdit from "@/components/Pages/Partners"
+
 
 import {
   auth
@@ -45,29 +44,28 @@ const router = new VueRouter({
       component: Home,
     },
     {
-      path: "/about",
-      name: "about",
-      component: About,
+      path: "/fanclub",
+      name: "fanclub",
+      component: Fanclub,
     },
     {
+      path: "/partners",
+      name: "partners",
+      component: Partners,
+    }, {
       path: "/news",
       name: "news",
       component: News,
     },
     {
-      path: "/driver/:id",
-      name: "driverProfile",
+      path: "/profile",
+      name: "profile",
       component: DriverProfile,
     },
     {
-      path: "/drivers",
-      name: "drivers",
-      component: Driver,
-    },
-    {
-      path: "/simulator",
-      name: "simulator",
-      component: Simulator,
+      path: "/Marketing",
+      name: "Marketing",
+      component: Marketing,
     }, {
       path: "/post/:slug",
       name: "post",
@@ -79,14 +77,8 @@ const router = new VueRouter({
       component: Login,
     },
     {
-      path: "/f3",
-      name: "F3",
-      component: F3,
-    },
-    {
-      path: "/f4",
-      name: "F4",
-      component: F4,
+      path: "/media",
+      component: Media,
     }, {
       path: "/dashboard",
       component: Dashboard,
@@ -99,25 +91,16 @@ const router = new VueRouter({
           component: Posts,
         },
         {
-          path: "calendars",
-          component: Calendars,
-          children: [{
-              path: "/",
-              component: Formula_3,
-            },
-            {
-              path: "f4",
-              component: Formula_4,
-            },
-          ],
+          path: "calendar",
+          component: Calendar,
         },
         {
-          path: "drivers",
-          component: Drivers,
+          path: "profile",
+          component: Profile,
         },
         {
-          path: "carousel",
-          component: Carousel,
+          path: "video",
+          component: Video,
         },
         {
           path: "gallery",
@@ -130,6 +113,10 @@ const router = new VueRouter({
               path: "circuits",
               component: Circuits,
             },
+            {
+              path: "videos",
+              component: Videos,
+            },
           ],
         },
         {
@@ -137,19 +124,19 @@ const router = new VueRouter({
           component: Pages,
           children: [{
               path: "/",
-              component: AboutEdit,
+              component: FanclubEdit,
             },
             {
-              path: "simulator",
-              component: SimulatorEdit,
+              path: "marketing",
+              component: MarketingEdit,
             },
             {
-              path: "f3",
-              component: F3Edit,
+              path: "partners",
+              component: PartnersEdit,
             },
             {
-              path: "f4",
-              component: F4Edit,
+              path: "media",
+              component: MediaEdit,
             }
           ]
         }
@@ -174,6 +161,7 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
+
 });
 
 export default router;

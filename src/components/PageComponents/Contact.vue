@@ -8,8 +8,8 @@
         <mdb-card-body class="container">
           <mdb-card-text class="pb-4 text-center" mr-4 ml-4>
             Do you have any questions? Please do not hesitate to contact us
-            directly. Our team will get back to you within a matter of hours
-            to help you.
+            directly. We will get back to you within a matter of hours to
+            help you.
           </mdb-card-text>
           <mdb-row>
             <mdb-col>
@@ -40,7 +40,7 @@
             </mdb-col>
           </mdb-row>
         </mdb-card-body>
-        <div class="g-recaptcha" data-sitekey="6LfX76QZAAAAABce03WAFwtbZgnHU909_NDK8q7t"></div>
+        <div class="g-recaptcha" data-sitekey></div>
         <mdb-card-footer class="text-center">
           <mdb-btn color="secondary" type="submit">Send</mdb-btn>
         </mdb-card-footer>
@@ -104,23 +104,16 @@ export default {
       event.target.classList.add("was-validated");
       console.log("clicked");
       if (this.validate("email", "name", "message", "subject")) {
-        emailjs
-          .sendForm(
-            "gmail_jhr",
-            "jhr_template_CogtKdJO",
-            event.target,
-            "user_NneW5XuAU0JIqdI7Wr8RN"
-          )
-          .then(
-            (result) => {
-              console.log("SUCCESS!", result.status, result.text);
-              event.target.classList.remove("was-validated");
-              this.fields = {};
-            },
-            (error) => {
-              console.log("FAILED...", error);
-            }
-          );
+        emailjs.sendForm("gmail", "", event.target, "").then(
+          (result) => {
+            console.log("SUCCESS!", result.status, result.text);
+            event.target.classList.remove("was-validated");
+            this.fields = {};
+          },
+          (error) => {
+            console.log("FAILED...", error);
+          }
+        );
       }
     },
   },

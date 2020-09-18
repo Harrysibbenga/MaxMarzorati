@@ -1,33 +1,33 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import posts from "./Modules/posts";
-import carousel from "./Modules/carousel";
+import videos from "./Modules/videos";
 import global from "./Modules/global";
 import images from "./Modules/images";
-import formula3 from "./Modules/formula3";
-import formula4 from "./Modules/formula4";
+import calendar from "./Modules/calendar";
 import circuits from "./Modules/circuits";
-import drivers from "./Modules/drivers";
-import about from "./Modules/about";
-import sim from "./Modules/sim";
-import f3page from "./Modules/f3page";
-import f4page from "./Modules/f4page";
+import profile from "./Modules/profile";
+import media from "./Modules/media";
+import fanclub from "./Modules/fanclub";
+import partners from "./Modules/partners";
+import marketing from "./Modules/marketing";
+import videoSection from "./Modules/videoSection";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
     posts,
-    carousel,
+    videos,
     global,
     images,
-    formula3,
-    formula4,
+    calendar,
     circuits,
-    drivers,
-    about,
-    sim,
-    f3page,
-    f4page
+    profile,
+    fanclub,
+    partners,
+    marketing,
+    videoSection,
+    media
   },
 });
