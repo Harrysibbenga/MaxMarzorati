@@ -15,7 +15,12 @@
                     class="img-fluid"
                   />
 
-                  <img v-else :src="defaultImage" alt="Placeholder image" class="img-fluid" />
+                  <img
+                    v-else
+                    :src="defaultImage"
+                    alt="Placeholder image"
+                    class="img-fluid"
+                  />
                   <mdb-btn @click="headlineImage">Headline image</mdb-btn>
                 </mdb-col>
               </mdb-row>
@@ -43,7 +48,11 @@
 
             <div class="row">
               <div class="md-form col-6">
-                <mdb-input label="Race number" inline v-model.trim="raceNumber" />
+                <mdb-input
+                  label="Race number"
+                  inline
+                  v-model.trim="raceNumber"
+                />
               </div>
               <div class="md-form col-6">
                 <mdb-input label="Sponsors" inline v-model.trim="sponsors" />
@@ -54,37 +63,65 @@
           <mdb-col class="col-12 text-center pb-4">
             <mdb-popover trigger="click" :options="{ placement: 'bottom' }">
               <span slot="header">Facebook link</span>
-              <mdb-input slot="body" label="Facebook link" v-model="social.platforms.facebook"></mdb-input>
+              <mdb-input
+                slot="body"
+                label="Facebook link"
+                v-model="social.platforms.facebook"
+              ></mdb-input>
               <mdb-btn slot="reference">Facebook</mdb-btn>
             </mdb-popover>
             <mdb-popover trigger="click" :options="{ placement: 'bottom' }">
               <span slot="header">insta link</span>
-              <mdb-input slot="body" label="insta link" v-model="social.platforms.insta"></mdb-input>
+              <mdb-input
+                slot="body"
+                label="insta link"
+                v-model="social.platforms.insta"
+              ></mdb-input>
               <mdb-btn slot="reference">insta</mdb-btn>
             </mdb-popover>
             <mdb-popover trigger="click" :options="{ placement: 'bottom' }">
               <span slot="header">Twitter link</span>
-              <mdb-input slot="body" label="Twitter link" v-model="social.platforms.twitter"></mdb-input>
+              <mdb-input
+                slot="body"
+                label="Twitter link"
+                v-model="social.platforms.twitter"
+              ></mdb-input>
               <mdb-btn slot="reference">Twitter</mdb-btn>
             </mdb-popover>
             <mdb-popover trigger="click" :options="{ placement: 'bottom' }">
               <span slot="header">Google+ link</span>
-              <mdb-input slot="body" label="Gplus link" v-model="social.platforms.gplus"></mdb-input>
+              <mdb-input
+                slot="body"
+                label="Gplus link"
+                v-model="social.platforms.gplus"
+              ></mdb-input>
               <mdb-btn slot="reference">Google+</mdb-btn>
             </mdb-popover>
             <mdb-popover trigger="click" :options="{ placement: 'bottom' }">
               <span slot="header">Twitch link</span>
-              <mdb-input slot="body" label="Twitch link" v-model="social.platforms.twitch"></mdb-input>
+              <mdb-input
+                slot="body"
+                label="Twitch link"
+                v-model="social.platforms.twitch"
+              ></mdb-input>
               <mdb-btn slot="reference">Twitch</mdb-btn>
             </mdb-popover>
             <mdb-popover trigger="click" :options="{ placement: 'bottom' }">
               <span slot="header">Pinterest link</span>
-              <mdb-input slot="body" label="Pinterest link" v-model="social.platforms.pinterest"></mdb-input>
+              <mdb-input
+                slot="body"
+                label="Pinterest link"
+                v-model="social.platforms.pinterest"
+              ></mdb-input>
               <mdb-btn slot="reference">Pinterest</mdb-btn>
             </mdb-popover>
             <mdb-popover trigger="click" :options="{ placement: 'bottom' }">
               <span slot="header">Youtube link</span>
-              <mdb-input slot="body" label="Youtube link" v-model="social.platforms.youtube"></mdb-input>
+              <mdb-input
+                slot="body"
+                label="Youtube link"
+                v-model="social.platforms.youtube"
+              ></mdb-input>
               <mdb-btn slot="reference">Youtube</mdb-btn>
             </mdb-popover>
           </mdb-col>
@@ -108,9 +145,18 @@
               <mdb-btn @click="selectImage">Select image</mdb-btn>
             </div>
             <mdb-row>
-              <mdb-col class="col-6 col-md-4" v-for="(img, index) in galleryContent" :key="index">
+              <mdb-col
+                class="col-6 col-md-4"
+                v-for="(img, index) in galleryContent"
+                :key="index"
+              >
                 <img :src="img.url" :alt="img.alt" class="img-fluid" />
-                <button class="btn btn-danger btn-sm" @click="removeItem(img.id)">Delete</button>
+                <button
+                  class="btn btn-danger btn-sm"
+                  @click="removeItem(img.id)"
+                >
+                  Delete
+                </button>
               </mdb-col>
             </mdb-row>
           </mdb-col>
@@ -144,7 +190,9 @@
         <img :src="img.content.url" :alt="img.content.alt" class="img-fluid" />
       </mdb-modal-body>
       <mdb-modal-footer>
-        <mdb-btn color="secondary" size="sm" @click.native="declineUse">No</mdb-btn>
+        <mdb-btn color="secondary" size="sm" @click.native="declineUse"
+          >No</mdb-btn
+        >
         <mdb-btn color="primary" size="sm" @click="confirmUse">Yes</mdb-btn>
       </mdb-modal-footer>
     </mdb-modal>
@@ -180,16 +228,27 @@
                   class="custom-file-label"
                   for="inputGroupFile01"
                   v-if="file.name"
-                >{{ file.name }}</label>
-                <label class="custom-file-label" for="inputGroupFile01" v-else>Image</label>
+                  >{{ file.name }}</label
+                >
+                <label class="custom-file-label" for="inputGroupFile01" v-else
+                  >Image</label
+                >
               </div>
             </div>
           </div>
         </div>
       </mdb-modal-body>
       <mdb-modal-footer>
-        <mdb-btn color="secondary" size="sm" @click.native="closeImageUpload">Close</mdb-btn>
-        <mdb-btn color="primary" size="sm" :disabled="img.alt == ''" @click="saveFile(type)">Save</mdb-btn>
+        <mdb-btn color="secondary" size="sm" @click.native="closeImageUpload"
+          >Close</mdb-btn
+        >
+        <mdb-btn
+          color="primary"
+          size="sm"
+          :disabled="img.alt == ''"
+          @click="saveFile(type)"
+          >Save</mdb-btn
+        >
       </mdb-modal-footer>
       <transition name="fade">
         <div
@@ -227,9 +286,7 @@
                   @click="selected(img)"
                 />
                 <label class="custom-control-label" :for="img.id">
-                  {{
-                  img.alt
-                  }}
+                  {{ img.alt }}
                 </label>
               </div>
             </div>
@@ -237,7 +294,9 @@
         </div>
       </mdb-modal-body>
       <mdb-modal-footer>
-        <mdb-btn color="secondary" @click.native="selectModel = false">Close</mdb-btn>
+        <mdb-btn color="secondary" @click.native="selectModel = false"
+          >Close</mdb-btn
+        >
         <mdb-btn color="primary" @click="saveSelection">Confirm</mdb-btn>
       </mdb-modal-footer>
     </mdb-modal>
@@ -302,6 +361,7 @@ export default {
       },
       galleryContent: [],
       selectedImages: [],
+      updatedImage: null,
       img: {
         id: "",
         content: "",
@@ -339,9 +399,6 @@ export default {
     },
     uploadMsg() {
       return this.$store.getters["images/getMsg"];
-    },
-    updatedImage() {
-      return this.$store.getters["images/getImage"];
     },
     images() {
       return this.$store.getters["images/getImages"];
@@ -500,33 +557,29 @@ export default {
         });
     },
     saveFile() {
-      if (this.type == "headline") {
-        let payload = {};
-        payload.file = this.file;
-        payload.alt = this.img.alt;
-        this.$store.dispatch("images/uploadImage", payload);
-        setTimeout(() => {
-          this.img.content = this.updatedImage;
-          this.headline.imgId = this.img.content.id;
-          this.headline.url = this.img.content.url;
-          this.headline.alt = this.img.content.alt;
-          this.uploadImage = false;
-          this.type = "";
+      let payload = {};
+      payload.file = this.file;
+      payload.alt = this.img.alt;
+      this.$store
+        .dispatch("images/uploadImage", payload)
+        .then((img) => {
+          this.img.content = img;
+          if (this.type == "headline") {
+            this.headline.imgId = this.img.content.id;
+            this.headline.url = this.img.content.url;
+            this.headline.alt = this.img.content.alt;
+          } else if (this.type == "new") {
+            this.galleryContent.push(this.img.content);
+          }
+        })
+        .then(() => {
+          this.$store.dispatch("global/setLoading", false);
           this.file = "";
-        }, 2000);
-      } else if (this.type == "new") {
-        let payload = {};
-        payload.file = this.file;
-        payload.alt = this.img.alt;
-        this.$store.dispatch("images/uploadImage", payload);
-        setTimeout(() => {
-          this.img.content = this.updatedImage;
-          this.galleryContent.push(this.img.content);
-          this.uploadImage = false;
-          this.type = "";
-          this.file = "";
-        }, 2000);
-      }
+          this.img.alt = "";
+          setTimeout(() => {
+            this.uploadImage = false;
+          }, 2000);
+        });
     },
     closeImageUpload() {
       this.uploadImage = false;

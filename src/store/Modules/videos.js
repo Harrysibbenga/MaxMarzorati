@@ -27,6 +27,8 @@ const videos = {
         uploadVideo({
             commit
         }, payload) {
+            return new Promise((resolve) => {
+       
             let file = payload.file
             let alt = payload.alt
             let storageRef = storage.ref("videos/" + file.name);
@@ -61,17 +63,7 @@ const videos = {
                                         let video = doc.data()
                                         video.id = id
                                         commit("setVideo", video)
-                                    })
-                                    .then(() => {
-                                        store.dispatch("global/setLoading", false);
-                                        let msg = {
-                                            type: "success",
-                                            message: "Video sucssesfully uploaded to storage"
-                                        }
-                                        commit("setMsg", msg)
-                                        setTimeout(() => {
-                                            commit("setMsg", {})
-                                        }, 8000)
+                                        resolve(video)
                                     })
                                     .catch(err => {
                                         store.dispatch("global/setLoading", false);
@@ -99,6 +91,8 @@ const videos = {
                     });
                 }
             );
+                         
+            })
         },
         setVideos({
             commit

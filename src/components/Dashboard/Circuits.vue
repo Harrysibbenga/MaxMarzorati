@@ -1,11 +1,17 @@
 <template>
   <div>
     <div class="container text-center">
-      <mdb-btn color="primary" class="ml-0" @click="addCircuitModel = true">Add new circuit</mdb-btn>
+      <mdb-btn color="primary" class="ml-0" @click="addCircuitModel = true"
+        >Add new circuit</mdb-btn
+      >
     </div>
     <mdb-container fluid class="p-0 pt-5">
       <mdb-row>
-        <mdb-col class="col-4" v-for="(circuit, index) in circuitList" :key="index">
+        <mdb-col
+          class="col-4"
+          v-for="(circuit, index) in circuitList"
+          :key="index"
+        >
           <img :src="circuit.url" :alt="circuit.alt" class="img-fluid" />
           <p>name: {{ circuit.title }}</p>
           <p>alt: {{ circuit.alt }}</p>
@@ -43,12 +49,24 @@
       <mdb-modal-body>
         <form @submit.prevent class="p-2">
           <mdb-col class="text-center pt-2">
-            <img v-if="circuit.url" :src="circuit.url" :alt="circuit.alt" class="img-fluid" />
+            <img
+              v-if="circuit.url"
+              :src="circuit.url"
+              :alt="circuit.alt"
+              class="img-fluid"
+            />
 
-            <img v-else :src="defaultImage" alt="Placeholder image" class="img-fluid" />
+            <img
+              v-else
+              :src="defaultImage"
+              alt="Placeholder image"
+              class="img-fluid"
+            />
           </mdb-col>
 
-          <mdb-btn color="primary" class="ml-3" inline @click="newImage">Circuit Image</mdb-btn>
+          <mdb-btn color="primary" class="ml-3" inline @click="newImage"
+            >Circuit Image</mdb-btn
+          >
 
           <div class="md-form">
             <mdb-input label="Title" inline v-model.trim="circuit.title" />
@@ -70,9 +88,10 @@
       @close="deleteModal = false"
     >
       <mdb-modal-body class="text-center">
-        <span
-          class="text-danger"
-        >Are you sure you want to delete this circuit ? ( any documents that use this circuit will need to be changed )</span>
+        <span class="text-danger"
+          >Are you sure you want to delete this circuit ? ( any documents that
+          use this circuit will need to be changed )</span
+        >
         {{ toDeleteItem.title }}
         <mdb-btn color="secondary" @click.native="cancelDelete">Close</mdb-btn>
         <mdb-btn color="danger" @click="confirmDelete">Delete</mdb-btn>
@@ -91,7 +110,9 @@
         <img :src="img.content.url" :alt="img.content.alt" class="img-fluid" />
       </mdb-modal-body>
       <mdb-modal-footer>
-        <mdb-btn color="secondary" size="sm" @click.native="declineUse">No</mdb-btn>
+        <mdb-btn color="secondary" size="sm" @click.native="declineUse"
+          >No</mdb-btn
+        >
         <mdb-btn color="primary" size="sm" @click="confirmUse">Yes</mdb-btn>
       </mdb-modal-footer>
     </mdb-modal>
@@ -127,16 +148,27 @@
                   class="custom-file-label"
                   for="inputGroupFile01"
                   v-if="file.name"
-                >{{ file.name }}</label>
-                <label class="custom-file-label" for="inputGroupFile01" v-else>Image</label>
+                  >{{ file.name }}</label
+                >
+                <label class="custom-file-label" for="inputGroupFile01" v-else
+                  >Image</label
+                >
               </div>
             </div>
           </div>
         </div>
       </mdb-modal-body>
       <mdb-modal-footer>
-        <mdb-btn color="secondary" size="sm" @click.native="closeImageUpload">Close</mdb-btn>
-        <mdb-btn color="primary" size="sm" :disabled="img.alt == ''" @click="saveFile(type)">Save</mdb-btn>
+        <mdb-btn color="secondary" size="sm" @click.native="closeImageUpload"
+          >Close</mdb-btn
+        >
+        <mdb-btn
+          color="primary"
+          size="sm"
+          :disabled="img.alt == ''"
+          @click="saveFile(type)"
+          >Save</mdb-btn
+        >
       </mdb-modal-footer>
       <transition name="fade">
         <div
@@ -184,6 +216,7 @@ export default {
       deleteModal: false,
       uploadImage: false,
       existsModal: false,
+      updatedImage: null,
       file: "",
       msg: {
         message: "",
@@ -218,9 +251,6 @@ export default {
     },
     uploadMsg() {
       return this.$store.getters["images/getMsg"];
-    },
-    updatedImage() {
-      return this.$store.getters["images/getImage"];
     },
   },
   methods: {
@@ -311,16 +341,22 @@ export default {
       let payload = {};
       payload.file = this.file;
       payload.alt = this.img.alt;
-      this.$store.dispatch("images/uploadImage", payload);
-      setTimeout(() => {
-        this.img.content = this.updatedImage;
-        this.circuit.imgId = this.img.content.id;
-        this.circuit.url = this.img.content.url;
-        this.circuit.alt = this.img.content.alt;
-        this.uploadImage = false;
-        this.file = "";
-        this.img.alt = "";
-      }, 2000);
+      this.$store
+        .dispatch("images/uploadImage", payload)
+        .then((img) => {
+          this.img.content = img;
+          this.circuit.imgId = this.img.content.id;
+          this.circuit.url = this.img.content.url;
+          this.circuit.alt = this.img.content.alt;
+        })
+        .then(() => {
+          this.$store.dispatch("global/setLoading", false);
+          this.file = "";
+          this.img.alt = "";
+          setTimeout(() => {
+            this.uploadImage = false;
+          }, 3000);
+        });
     },
     closeImageUpload() {
       this.uploadImage = false;

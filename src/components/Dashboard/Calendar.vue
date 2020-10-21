@@ -395,6 +395,7 @@ export default {
         date2: "",
         circuit: {},
       },
+      updatedImage: null,
       uploadImage: false,
       file: "",
       img: {
@@ -435,14 +436,11 @@ export default {
     updatedCircuit() {
       return this.$store.getters["circuits/getCircuit"];
     },
-    uploadMsg() {
-      return this.$store.getters["images/getMsg"];
-    },
-    updatedImage() {
-      return this.$store.getters["images/getImage"];
-    },
     circuits() {
       return this.$store.getters["circuits/getCircuits"];
+    },
+    uploadMsg() {
+      return this.$store.getters["images/getMsg"];
     },
     pageCount() {
       let l = this.fixtures.length,
@@ -596,19 +594,27 @@ export default {
       let payload = {};
       payload.file = this.file;
       payload.alt = this.img.alt;
-      this.$store.dispatch("images/uploadImage", payload);
-      setTimeout(() => {
-        this.img.content = this.updatedImage;
-        this.circuit.imgId = this.img.content.id;
-        this.circuit.url = this.img.content.url;
-        this.circuit.alt = this.img.content.alt;
-        this.uploadImage = false;
-        if (this.type == "edit") {
-          this.clickedFixture.circuit.imgId = this.circuit.imgId;
-          this.clickedFixture.circuit.url = this.circuit.url;
-          this.clickedFixture.circuit.alt = this.img.alt;
-        }
-      }, 1000);
+      this.$store
+        .dispatch("images/uploadImage", payload)
+        .then((img) => {
+          this.img.content = img;
+          this.circuit.imgId = this.img.content.id;
+          this.circuit.url = this.img.content.url;
+          this.circuit.alt = this.img.content.alt;
+          if (this.type == "edit") {
+            this.clickedFixture.circuit.imgId = this.circuit.imgId;
+            this.clickedFixture.circuit.url = this.circuit.url;
+            this.clickedFixture.circuit.alt = this.img.alt;
+          }
+        })
+        .then(() => {
+          this.$store.dispatch("global/setLoading", false);
+          this.file = "";
+          this.img.alt = "";
+          setTimeout(() => {
+            this.uploadImage = false;
+          }, 3000);
+        });
     },
     closeImageUpload() {
       this.uploadImage = false;

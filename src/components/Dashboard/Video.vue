@@ -4,12 +4,25 @@
       <mdb-row>
         <form @submit.prevent="submitForm">
           <mdb-col class="text-center pt-2">
-            <video class="video-fluid z-depth-1" autoplay loop muted v-if="section.url">
+            <video
+              class="video-fluid z-depth-1"
+              autoplay
+              loop
+              muted
+              v-if="section.url"
+            >
               <source :src="section.url" type="video/mp4" />
             </video>
-            <img v-else :src="defaultImage" alt="Placeholder Image" class="img-fluid" />
+            <img
+              v-else
+              :src="defaultImage"
+              alt="Placeholder Image"
+              class="img-fluid"
+            />
           </mdb-col>
-          <mdb-btn color="primary" class="ml-3" inline @click="newVideo">Change video</mdb-btn>
+          <mdb-btn color="primary" class="ml-3" inline @click="newVideo"
+            >Change video</mdb-btn
+          >
           <mdb-btn color="primary" type="submit">Confirm</mdb-btn>
         </form>
       </mdb-row>
@@ -34,12 +47,20 @@
         <div class="row col-12 col-md-6 col-lg-4 py-3">
           <p>Would you like to use this one ?</p>
         </div>
-        <video class="video-fluid z-depth-1" autoplay loop muted v-if="video.content.url">
+        <video
+          class="video-fluid z-depth-1"
+          autoplay
+          loop
+          muted
+          v-if="video.content.url"
+        >
           <source :src="video.content.url" type="video/mp4" />
         </video>
       </mdb-modal-body>
       <mdb-modal-footer>
-        <mdb-btn color="secondary" size="sm" @click.native="declineUse">No</mdb-btn>
+        <mdb-btn color="secondary" size="sm" @click.native="declineUse"
+          >No</mdb-btn
+        >
         <mdb-btn color="primary" size="sm" @click="confirmUse">Yes</mdb-btn>
       </mdb-modal-footer>
     </mdb-modal>
@@ -75,16 +96,27 @@
                   class="custom-file-label"
                   for="inputGroupFile01"
                   v-if="file.name"
-                >{{ file.name }}</label>
-                <label class="custom-file-label" for="inputGroupFile01" v-else>Video</label>
+                  >{{ file.name }}</label
+                >
+                <label class="custom-file-label" for="inputGroupFile01" v-else
+                  >Video</label
+                >
               </div>
             </div>
           </div>
         </div>
       </mdb-modal-body>
       <mdb-modal-footer>
-        <mdb-btn color="secondary" size="sm" @click.native="closeVideoUpload">Close</mdb-btn>
-        <mdb-btn color="primary" size="sm" :disabled="video.alt == ''" @click="saveFile(type)">Save</mdb-btn>
+        <mdb-btn color="secondary" size="sm" @click.native="closeVideoUpload"
+          >Close</mdb-btn
+        >
+        <mdb-btn
+          color="primary"
+          size="sm"
+          :disabled="video.alt == ''"
+          @click="saveFile(type)"
+          >Save</mdb-btn
+        >
       </mdb-modal-footer>
       <transition name="fade">
         <div
@@ -130,6 +162,7 @@ export default {
       },
       existsModal: false,
       uploadVideo: false,
+      updatedVideo: null,
       file: "",
       video: {
         id: "",
@@ -159,9 +192,6 @@ export default {
     },
     uploadMsg() {
       return this.$store.getters["videos/getMsg"];
-    },
-    updatedVideo() {
-      return this.$store.getters["videos/getVideo"];
     },
   },
   methods: {
@@ -240,17 +270,22 @@ export default {
       let payload = {};
       payload.file = this.file;
       payload.alt = this.video.alt;
-      this.$store.dispatch("videos/uploadVideo", payload);
-      setTimeout(() => {
-        this.video.content = this.updatedVideo;
-        this.section.videoId = this.video.content.id;
-        this.section.url = this.video.content.url;
-        this.section.alt = this.video.alt;
-        this.uploadVideo = false;
-        this.type = "";
-        this.file = "";
-        this.video.alt = "";
-      }, 2000);
+      this.$store
+        .dispatch("videos/uploadVideo", payload)
+        .then((video) => {
+          this.video.content = video;
+          this.section.videoId = this.video.content.id;
+          this.section.url = this.video.content.url;
+          this.section.alt = this.video.alt;
+        })
+        .then(() => {
+          this.$store.dispatch("global/setLoading", false);
+          this.file = "";
+          this.video.alt = "";
+          setTimeout(() => {
+            this.uploadVideo = false;
+          }, 2000);
+        });
     },
     closeVideoUpload() {
       this.uploadVideo = false;

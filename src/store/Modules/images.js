@@ -27,6 +27,9 @@ const images = {
         uploadImage({
             commit
         }, payload) {
+            return new Promise((resolve) => {
+                
+     
             let file = payload.file
             let alt = payload.alt
             let storageRef = storage.ref("images/" + file.name);
@@ -61,17 +64,7 @@ const images = {
                                         let img = doc.data()
                                         img.id = id
                                         commit("setImage", img)
-                                    })
-                                    .then(() => {
-                                        store.dispatch("global/setLoading", false);
-                                        let msg = {
-                                            type: "success",
-                                            message: "Image sucssesfully uploaded to storage"
-                                        }
-                                        commit("setMsg", msg)
-                                        setTimeout(() => {
-                                            commit("setMsg", {})
-                                        }, 8000)
+                                        resolve(img)
                                     })
                                     .catch(err => {
                                         store.dispatch("global/setLoading", false);
@@ -99,6 +92,8 @@ const images = {
                     });
                 }
             );
+        }) 
+                     
         },
         setImages({
             commit

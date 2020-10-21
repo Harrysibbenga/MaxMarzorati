@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="container text-center">
-      <mdb-btn color="primary" class="ml-0" inline @click="newImage">Add new image</mdb-btn>
+      <mdb-btn color="primary" class="ml-0" inline @click="newImage"
+        >Add new image</mdb-btn
+      >
     </div>
     <mdb-container fluid class="p-0 pt-5">
       <mdb-row>
@@ -37,9 +39,10 @@
       @close="deleteModal = false"
     >
       <mdb-modal-body class="text-center">
-        <span
-          class="text-danger"
-        >Are you sure you want to delete this image ? ( any documents that use this image will need to be changed )</span>
+        <span class="text-danger"
+          >Are you sure you want to delete this image ? ( any documents that use
+          this image will need to be changed )</span
+        >
         {{ toDeleteItem.name }}
         <mdb-btn color="primary" @click.native="cancelDelete">Close</mdb-btn>
         <mdb-btn color="secondary" @click="confirmDelete">Delete</mdb-btn>
@@ -77,16 +80,27 @@
                   class="custom-file-label"
                   for="inputGroupFile01"
                   v-if="file.name"
-                >{{ file.name }}</label>
-                <label class="custom-file-label" for="inputGroupFile01" v-else>Image</label>
+                  >{{ file.name }}</label
+                >
+                <label class="custom-file-label" for="inputGroupFile01" v-else
+                  >Image</label
+                >
               </div>
             </div>
           </div>
         </div>
       </mdb-modal-body>
       <mdb-modal-footer>
-        <mdb-btn color="secondary" size="sm" @click.native="closeImageUpload">Close</mdb-btn>
-        <mdb-btn color="primary" size="sm" :disabled="img.alt == ''" @click="saveFile(type)">Save</mdb-btn>
+        <mdb-btn color="secondary" size="sm" @click.native="closeImageUpload"
+          >Close</mdb-btn
+        >
+        <mdb-btn
+          color="primary"
+          size="sm"
+          :disabled="img.alt == ''"
+          @click="saveFile(type)"
+          >Save</mdb-btn
+        >
       </mdb-modal-footer>
       <transition name="fade">
         <div
@@ -233,12 +247,14 @@ export default {
       let payload = {};
       payload.file = this.file;
       payload.alt = this.img.alt;
-      this.$store.dispatch("images/uploadImage", payload);
-      setTimeout(() => {
-        this.uploadImage = false;
+      this.$store.dispatch("images/uploadImage", payload).then(() => {
+        this.$store.dispatch("global/setLoading", false);
         this.file = "";
         this.img.alt = "";
-      }, 2000);
+        setTimeout(() => {
+          this.uploadImage = false;
+        }, 3000);
+      });
     },
     closeImageUpload() {
       this.uploadImage = false;

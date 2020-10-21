@@ -316,6 +316,7 @@ export default {
       },
       existsModal: false,
       uploadImage: false,
+      updatedImage: null,
       file: "",
       img: {
         id: "",
@@ -351,9 +352,6 @@ export default {
     },
     uploadMsg() {
       return this.$store.getters["images/getMsg"];
-    },
-    updatedImage() {
-      return this.$store.getters["images/getImage"];
     },
     pageCount() {
       let l = this.posts.length,
@@ -415,6 +413,7 @@ export default {
           createdOn: new Date(),
           imgId: this.post.imgId,
           url: this.post.url,
+          alt: this.post.alt,
         })
         .then(() => {
           this.reset();
@@ -464,35 +463,31 @@ export default {
         });
     },
     saveFile() {
-      if (this.type == "new") {
-        let payload = {};
-        payload.file = this.file;
-        payload.alt = this.img.alt;
-        this.$store.dispatch("images/uploadImage", payload);
-        setTimeout(() => {
-          this.img.content = this.updatedImage;
-          this.post.imgId = this.img.content.id;
-          this.post.url = this.img.content.url;
-          this.uploadImage = false;
-          this.type = "";
-          this.file.name = "";
-        }, 2000);
-      } else if (this.type == "edit") {
-        let payload = {};
-        payload.file = this.file;
-        payload.alt = this.img.alt;
-        this.img.alt = "";
-        this.$store.dispatch("images/uploadImage", payload);
-        setTimeout(() => {
-          this.img.content = this.updatedImage;
-          this.clickedPost.imgId = this.img.content.id;
-          this.clickedPost.url = this.img.content.url;
-          this.uploadImage = false;
-          this.type = "";
+      let payload = {};
+      payload.file = this.file;
+      payload.alt = this.img.alt;
+      this.$store
+        .dispatch("images/uploadImage", payload)
+        .then((img) => {
+          this.img.content = img;
+          if (this.type == "new") {
+            this.post.imgId = this.img.content.id;
+            this.post.url = this.img.content.url;
+            this.post.alt = this.img.alt;
+          } else if (this.type == "edit") {
+            this.clickedPost.imgId = this.img.content.id;
+            this.clickedPost.url = this.img.content.url;
+            this.clickedPost.alt = this.img.alt;
+          }
+        })
+        .then(() => {
+          this.$store.dispatch("global/setLoading", false);
           this.file = "";
           this.img.alt = "";
-        }, 2000);
-      }
+          setTimeout(() => {
+            this.uploadImage = false;
+          }, 3000);
+        });
     },
     closeImageUpload() {
       this.uploadImage = false;
@@ -505,7 +500,7 @@ export default {
         this.post.imgId = this.img.id;
         this.existsModal = false;
         this.post.url = this.img.content.url;
-        this.img.alt = this.img.content.alt;
+        this.post.alt = this.img.content.alt;
         this.type = "";
         this.file = "";
         this.img.alt = "";
@@ -513,7 +508,7 @@ export default {
         this.clickedPost.imgId = this.img.id;
         this.existsModal = false;
         this.clickedPost.url = this.img.content.url;
-        this.img.alt = this.img.content.alt;
+        this.clickedPost.alt = this.img.content.alt;
         this.type = "";
         this.file = "";
         this.img.alt = "";
@@ -603,6 +598,7 @@ export default {
       this.clickedPost.year = post.year;
       this.clickedPost.url = post.url;
       this.clickedPost.imgId = post.imgId;
+      this.clickedPost.alt = post.alt;
     },
     cancelEdit() {
       this.clickedPost = {
@@ -615,6 +611,7 @@ export default {
         year: "",
         url: "",
         imgId: "",
+        alt: "",
       };
       this.editModal = false;
     },
@@ -649,6 +646,7 @@ export default {
           createdOn: new Date(),
           imgId: this.clickedPost.imgId,
           url: this.clickedPost.url,
+          alt: this.clickedPost.alt,
         })
         .then(() => {
           this.cancelEdit();
