@@ -1,0 +1,70 @@
+@import url("https://use.typekit.net/ahh2zbc.css");
+
+html {
+    scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: sweet-sans-pro,
+        sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+p {
+    line-height: 1.5rem;
+    margin: 0;
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+    font-family: sweet-sans-pro,
+        sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: white;
+}
+
+// loader
+.loading {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 3000;
+    top: 0;
+    left: 0;
+    background-color: black;
+    opacity: 1;
+}
+
+.fade-enter-active {
+    transition: opacity 0.5s;
+}
+
+.fade-leave-active {
+    transition: opacity 0.5s;
+}
+
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.image-dim {
+    max-width: 100%;
+    max-height: 500px;
+    min-width: 500px;
+}
+
+a:hover {
+    color: red !important;
+}
+
+link a {
+    color: red !important;
+}
